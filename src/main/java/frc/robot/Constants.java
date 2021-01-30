@@ -15,7 +15,10 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class CONSTANTS {
+    //General Constants
+    public static final int PCM_ID = 3;
+
     //Constants for motor controllers in DriveTrain
     public static final class DRIVE {
         public static final int FORWARD_CHANNEL_ID = 2;

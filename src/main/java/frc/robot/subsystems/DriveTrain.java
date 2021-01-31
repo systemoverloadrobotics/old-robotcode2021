@@ -18,6 +18,7 @@ import java.util.function.BooleanSupplier;
 
 public class DriveTrain extends SubsystemBase {
     
+    //DriveBase is divided into 2 sections, a right and left section.
     private CANSparkMax rightMaster = new CANSparkMax(DRIVE.RIGHT_MASTER_ID, MotorType.kBrushless);
     private CANSparkMax rightFollower1 = new CANSparkMax(DRIVE.RIGHT_FOLLOWER_1_ID, MotorType.kBrushless);
     private CANSparkMax rightFollower2 = new CANSparkMax(DRIVE.RIGHT_FOLLOWER_2_ID, MotorType.kBrushless);
@@ -38,7 +39,7 @@ public class DriveTrain extends SubsystemBase {
     BooleanSupplier m_align;
 
 
-    public DriveTrain(BooleanSupplier align){
+    public DriveTrain(BooleanSupplier align) {
         m_align = align;
 
         rightMaster.restoreFactoryDefaults();
@@ -54,6 +55,25 @@ public class DriveTrain extends SubsystemBase {
         robotDrive.arcadeDrive(-speed * DRIVE.SPEED_MULTIPLIER, -turn * DRIVE.TURN_MULTIPLIER);
     }
 
+    //Pushes the solenoid forward
+    public void shiftUp() {
+        System.out.println("Down");
+        shifter.set(Value.kForward);
+    }
+    //Pushes the solenoid backward
+    public void shiftDown() {
+        System.out.println("Up");
+        shifter.set(Value.kReverse);
+    }
 
+    //Gets the encoder value for the left encoder
+    public double getLeftMasterEncoderValue() {
+        return leftMasterEncoder.getPosition();
+    }
+
+    //Gets the econder value for the right encoder
+    public double getRightMasterEncoderValue() {
+        return rightMasterEncoder.getPosition();
+    }
 
 }
